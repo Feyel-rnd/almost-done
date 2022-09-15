@@ -1,0 +1,46 @@
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+    
+    <!-- Icon -->
+     <div class="fadeIn first">
+      <img src="http://cdn.shopify.com/s/files/1/0538/8242/1442/files/Feyel_claim-try.jpg?v=1618495488" id="icon" alt="User Icon" />
+      
+    </div><br>
+    <mat-label class="h4">Analyse sensorielle</mat-label>
+     
+    <!-- Login Form -->
+     <form>
+      
+      <input  type="text" id="email" #email class="fadeIn second" name="login" placeholder="Email" >
+     
+      <input id="password" #password type="password" class="fadeIn third" name="login" placeholder="Mot de passe">
+      <input type="submit" class="fadeIn fourth" value="Se connecter" (click)="Log(email.value,password.value)">
+    </form>
+
+    <!-- Remind Passowrd -->
+     <div id="formFooter">
+      <a class="underlineHover" href="#">Mot de passe oublié?</a>
+      <h1>Angular Router App</h1>
+<!-- This nav gives you links to click, which tells the router which route to use (defined in the routes constant in  AppRoutingModule) -->
+<nav>
+  <ul>
+    <li><a routerLink="/main-component" routerLinkActive="active" ariaCurrentWhenActive="page">First Component</a></li>
+    <li><a routerLink="/secondary-component" routerLinkActive="active" ariaCurrentWhenActive="page">Second Component</a></li>
+  </ul>
+</nav>
+<!-- The routed views render in the <router-outlet>-->
+<router-outlet></router-outlet>
+    </div>
+
+  </div>
+</div>
+<!-- 
+<button mat-button (click)="Log()"> Login</button>
+<button mat-button (click)="insert_doc()"> Inserer</button> -->
