@@ -7,6 +7,8 @@ export class YourGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+
+      
     return false;
   }
 }
