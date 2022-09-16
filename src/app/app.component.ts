@@ -1,6 +1,8 @@
 import { Component, VERSION } from '@angular/core';
 import * as Realm from "realm-web";
 import {MainPageComponent} from './main-page/main-page.component';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 
 async function loginEmailPassword(email, password) {
@@ -28,11 +30,26 @@ async function loginEmailPassword(email, password) {
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent  {
+  connected = true
+  correctForm = true
+  hide = true
+  loginUser() {
+    if (this.signinForm.controls['email'].status=="INVALID" || this.signinForm.controls['password'].status=="INVALID"){
+    this.correctForm = false;}
+    else {
+      this.correctForm = true;
+    }
+  }
+  signinForm = new FormGroup({
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+  });
   app = new Realm.App("data-icqqg")
   Log(a:string,b:string) {
     //console.log
+    if (this.correctForm){
   const user = loginEmailPassword(a, b);
-  console.log("Successfully logged in!", user);
+  console.log("Successfully logged in!", user);}
   }
 async insert_doc() {
   const mongo = this.app.currentUser.mongoClient("Cluster0");
