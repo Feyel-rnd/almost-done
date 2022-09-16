@@ -10,11 +10,13 @@ import { HelloComponent } from './hello.component';
 import {MainPageComponent} from './main-page/main-page.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing-module/app-routing-module.module'
+import { YourGuard } from './your-guard.guard';
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule,MaterialExampleModule,ReactiveFormsModule,BrowserAnimationsModule,MatInputModule,MatFormFieldModule,AppRoutingModule ],
   declarations: [ AppComponent, HelloComponent ],
   bootstrap:    [ AppComponent ],
+  providers: [YourGuard],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }
