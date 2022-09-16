@@ -33,6 +33,7 @@ export class AppComponent  {
   connected = true
   correctForm = true
   hide = true
+  redirect = false
   loginUser() {
     if (this.signinForm.controls['email'].status=="INVALID" || this.signinForm.controls['password'].status=="INVALID"){
     this.correctForm = false;}
@@ -50,9 +51,12 @@ export class AppComponent  {
     this.loginUser()
     if (this.correctForm){
       console.log(this.correctForm)
+      
   const user : any = loginEmailPassword(a, b);
-  if (user.__zone_symbol__value![0]=""){
-  console.log("Successfully logged in!", user)
+  //console.log(user.__zone_symbol__value[0])
+  if (user.__zone_symbol__value![0]==undefined){
+  //console.log("Successfully logged in!", user)
+  this.redirect = true
     //console.log(user.__zone_symbol__value)
 }
 else {
