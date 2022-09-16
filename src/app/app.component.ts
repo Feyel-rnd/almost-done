@@ -17,7 +17,7 @@ async function loginEmailPassword(email, password) {
     return user;
   } catch (err) {
     console.error("Failed to log in", err);
-    console.log(email)
+    //return err.__zone_symbol__state
   }
 }
 //const user = loginEmailPassword("spalette@feyel-artzner.com", "FeyelR&D");
@@ -47,9 +47,19 @@ export class AppComponent  {
   app = new Realm.App("data-icqqg")
   Log(a:string,b:string) {
     //console.log
+    this.loginUser()
     if (this.correctForm){
-  const user = loginEmailPassword(a, b);
-  console.log("Successfully logged in!", user);}
+      console.log(this.correctForm)
+  const user : any = loginEmailPassword(a, b);
+  if (user.__zone_symbol__value![0]=""){
+  console.log("Successfully logged in!", user)
+    //console.log(user.__zone_symbol__value)
+}
+else {
+  this.connected=false
+}
+
+}
   }
 async insert_doc() {
   const mongo = this.app.currentUser.mongoClient("Cluster0");
