@@ -65,7 +65,7 @@ export class ConnexionFormComponent {
         // //console.log(user.__zone_symbol__value)
                 // Usually you would use the redirect URL from the auth service.
         // However to keep the example simple, we will always redirect to `/admin`.
-        const redirectUrl = '/secondary-component';
+        const redirectUrl = '/main-component';
 
         // Redirect the user
         this.router.navigate([redirectUrl]);
