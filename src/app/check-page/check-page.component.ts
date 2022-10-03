@@ -1,6 +1,21 @@
+import { TmplAstRecursiveVisitor } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import * as Realm from 'realm-web';
 
+
+async function verify(token, tokenId) {
+  const app = new Realm.App('data-icqqg');
+  
+  try {
+    await app.emailPasswordAuth.confirmUser({ token, tokenId });
+    
+  } catch (err) {
+    console.error('Failed', err);
+    console.log (err.__zone_symbol__state)
+    result = "Erreur"
+  }
+}
 
 @Component({
   selector: 'app-check-page',
@@ -10,6 +25,7 @@ import { ActivatedRoute } from '@angular/router';
 export class CheckPageComponent implements OnInit {
   token: string;
   tokenId : string;
+  result = "Chargement ..."
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -19,7 +35,7 @@ export class CheckPageComponent implements OnInit {
 
         this.token = params.token;
         this.tokenId = params.tokenId;
-
+        verify(this.token,this.tokenId)
         //console.log(this.token); // popular
       }
     );
