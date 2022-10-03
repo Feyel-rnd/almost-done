@@ -27,7 +27,7 @@ export class CheckPageComponent implements OnInit {
     } catch (err) {
       console.error('Failed', err);
       console.log (err.__zone_symbol__state)
-      return "Erreur d'authentification : token invalide ou absent."
+      return "Erreur d'authentification : token expiré, invalide ou absent."
     }
   }
   
