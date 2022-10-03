@@ -14,20 +14,20 @@ import * as Realm from 'realm-web';
 export class CheckPageComponent implements OnInit {
   token: string;
   tokenId : string;
-  result : any;
-  //result = "Chargement ..."
+  //result : any;
+  result = "Chargement ..."
   constructor(private route: ActivatedRoute) { }
  
   async verify(token, tokenId) {
     const app = new Realm.App('data-icqqg');
     
     try {
-      //await app.emailPasswordAuth.confirmUser({ token, tokenId });
-      Promise.resolve( "Votre adresse est vérifiée ! Vous pouvez fermer cette page.")
+      await app.emailPasswordAuth.confirmUser({ token, tokenId });
+      return "Votre adresse est vérifiée ! Vous pouvez fermer cette page."
     } catch (err) {
       console.error('Failed', err);
       console.log (err.__zone_symbol__state)
-      Promise.resolve("Erreur")
+      return "Erreur d'authentification : token invalide ou absent."
     }
   }
   
