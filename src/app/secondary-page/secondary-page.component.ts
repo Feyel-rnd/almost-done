@@ -77,3 +77,7 @@ export class SecondaryPageComponent {
     console.log(result);
   }
 }
+
+// https://questionnaire-analyse-senso.firebaseapp.com/check-page-component?token=cebdaf9f382abab1b351691af57225d5a55ef956fd7ba3c5b1bdb2444abde7fdce4f062b37774b296c3cc29766d7943a36eaa314ecc15978a826e112ab6a6a09&tokenId=633ac4f94d4048d2f25a3f8f
+
+//https://questionnaire-analyse-senso.firebaseapp.com/check-page-component?token=hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh&tokenId=rkjkkkk
