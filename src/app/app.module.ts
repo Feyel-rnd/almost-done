@@ -7,9 +7,10 @@ import { AppRoutingModule } from './app-routing.module'
 import { YourGuard } from './your-guard.guard';
 import { SecondaryPageComponent } from './secondary-page/secondary-page.component';
 import { ConnexionFormModule } from './connexion-form/connexion-form.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports:      [ BrowserModule,AppRoutingModule, ConnexionFormModule ],
+  imports:      [ BrowserModule,AppRoutingModule, ConnexionFormModule, ReactiveFormsModule],
   declarations: [ AppComponent, HelloComponent, SecondaryPageComponent],
   bootstrap:    [ AppComponent ],
   providers: [YourGuard],
