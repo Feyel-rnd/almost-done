@@ -14,6 +14,7 @@ import * as Realm from 'realm-web';
 export class CheckPageComponent implements OnInit {
   token: string;
   tokenId : string;
+  
   //result : any;
   result = "Chargement ..."
   constructor(private route: ActivatedRoute) { }

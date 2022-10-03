@@ -13,6 +13,7 @@ async function createEmailPassword(email, password) {
     // Authenticate the user
     await app.emailPasswordAuth.registerUser({ email, password });
     // `App.currentUser` updates to match the logged in user
+    
     console.log("Successfull pending request !")
   } catch (err) {
     console.error('Failed', err);
@@ -32,6 +33,7 @@ export class SecondaryPageComponent {
   correctForm = true;
   hide = true;
   redirect = false;
+  sent = false;
    constructor(public router: Router){
 
    }
@@ -58,6 +60,7 @@ export class SecondaryPageComponent {
       //console.log(this.correctForm)
 
       const user: any = createEmailPassword(email, password);
+      this.sent = true
       //console.log(user.__zone_symbol__value[0])
     }else {
         this.connected = false;

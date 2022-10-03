@@ -14,6 +14,7 @@
       />
     </div>
     <br />
+    <div *ngIf="sent else formulaire_aff"> Un mail vient d'etre envoyé à l'adresse renseignée.</div><ng-template #formulaire_aff>
     <mat-label class="h4">Créer un compte</mat-label>
 
     <!-- Login Form -->
@@ -86,11 +87,11 @@
       >
         <div *ngIf="signinForm.controls['confirmedPassword'].errors?.['required']  ">
           Le mot de passe est obligatoire.
-          <div
+          <!-- <div
           *ngIf="signinForm.controls['confirmedPassword'].value!=signinForm.controls['password'].value"
           class="alert alert-danger"
-        >g
-      </div>
+        > 
+      </div>-->
         </div>
       </div>
 
@@ -102,7 +103,7 @@
       />
     
     </form>
-
+  </ng-template>
     <!-- Remind Passowrd -->
     <div id="formFooter">
       Vous avez déjà un compte ? <a class="underlineHover" href="login-component">Se connecter</a>
