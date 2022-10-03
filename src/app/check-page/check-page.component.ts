@@ -9,11 +9,11 @@ async function verify(token, tokenId) {
   
   try {
     await app.emailPasswordAuth.confirmUser({ token, tokenId });
-    
+    return "Votre adresse est vérifiée ! Vous pouvez fermer cette page."
   } catch (err) {
     console.error('Failed', err);
     console.log (err.__zone_symbol__state)
-    result = "Erreur"
+    return "Erreur"
   }
 }
 
@@ -25,7 +25,8 @@ async function verify(token, tokenId) {
 export class CheckPageComponent implements OnInit {
   token: string;
   tokenId : string;
-  result = "Chargement ..."
+  result : any;
+  //result = "Chargement ..."
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -35,9 +36,10 @@ export class CheckPageComponent implements OnInit {
 
         this.token = params.token;
         this.tokenId = params.tokenId;
-        verify(this.token,this.tokenId)
+        this.result = verify(this.token,this.tokenId)
         //console.log(this.token); // popular
       }
     );
   }
+  
 }
