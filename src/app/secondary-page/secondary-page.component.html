@@ -50,6 +50,8 @@
 
       <input
         mat-input
+        minlength="6"
+        maxlength="128"
         id="password"
         formControlName="password"
         #password
@@ -64,13 +66,20 @@
         *ngIf="signinForm.controls['password'].invalid && !correctForm"
         class="alert alert-danger"
       >
-        <div *ngIf="signinForm.controls['password'].errors?.['required']  ">
+        <div *ngIf="signinForm.controls['password'].errors?.['required'];else len2  ">
           Le mot de passe est obligatoire.
         </div>
+        <ng-template #len2>
+        <div *ngIf="confirmedPassword.value.length<6 || confirmedPassword.value.length>128"> 
+        Le mot de passe doit contenir entre 6 et 128 caractères.
+        </div>
+        </ng-template>
       </div>
 
       <input
         mat-input
+        minlength="6"
+        maxlength="128"
         id="confirmedPassword"
         formControlName="confirmedPassword"
         #confirmedPassword
@@ -88,8 +97,13 @@
         <div *ngIf="signinForm.controls['confirmedPassword'].errors?.['required'];else password_match">
           La confirmation du mot de passe est obligatoire.</div>
           <ng-template #password_match>
-          <div *ngIf="password.value!=confirmedPassword.value"> 
+          <div *ngIf="password.value!=confirmedPassword.value;else len"> 
           Les mots de passe doivent correspondre.
+          </div>
+          </ng-template>
+          <ng-template #len>
+          <div *ngIf="confirmedPassword.value.length<6 || confirmedPassword.value.length>128"> 
+          Le mot de passe doit contenir entre 6 et 128 caractères.
           </div>
           </ng-template>
           <!-- <div
