@@ -1,7 +1,7 @@
 import { Component, VERSION } from '@angular/core';
 import * as Realm from 'realm-web';
 import { MainPageComponent } from '../main-page/main-page.component';
-import { FormGroup, FormControl} from '@angular/forms';
+import { FormGroup, FormControl, EmailValidator } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -13,8 +13,8 @@ async function createEmailPassword(email, password) {
     // Authenticate the user
     await app.emailPasswordAuth.registerUser({ email, password });
     // `App.currentUser` updates to match the logged in user
-    
-    console.log("Successfull pending request !")
+
+    console.log('Successfull pending request !');
   } catch (err) {
     console.error('Failed', err);
     //return err.__zone_symbol__state
@@ -34,13 +34,14 @@ export class SecondaryPageComponent {
   hide = true;
   redirect = false;
   sent = false;
-   constructor(public router: Router){
-
-   }
-  loginUser() {
+  constructor(public router: Router) {}
+  CheckForm() {
     if (
       this.signinForm.controls['email'].status == 'INVALID' ||
-      this.signinForm.controls['password'].status == 'INVALID'
+      this.signinForm.controls['password'].status == 'INVALID' ||
+      this.signinForm.controls['confirmedPassword'].status == 'INVALID' ||
+      this.signinForm.controls['confirmedPassword'].value !=
+        this.signinForm.controls['password'].value
     ) {
       this.correctForm = false;
     } else {
@@ -48,23 +49,22 @@ export class SecondaryPageComponent {
     }
   }
   signinForm = new FormGroup({
-    email: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
     password: new FormControl('', Validators.required),
     confirmedPassword: new FormControl('', Validators.required),
   });
   app = new Realm.App('data-icqqg');
   Log(email: string, password: string) {
     //console.log
-    this.loginUser();
+    this.CheckForm();
     if (this.correctForm) {
       //console.log(this.correctForm)
 
       const user: any = createEmailPassword(email, password);
-      this.sent = true
+      this.sent = true;
       //console.log(user.__zone_symbol__value[0])
-    }else {
-        this.connected = false;
-      
+    } else {
+      this.connected = false;
     }
   }
   async insert_doc() {

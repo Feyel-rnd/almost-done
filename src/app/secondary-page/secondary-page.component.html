@@ -18,34 +18,34 @@
     <mat-label class="h4">Créer un compte</mat-label>
 
     <!-- Login Form -->
-    <form id="loginform" [formGroup]="signinForm" (ngSubmit)="loginUser()">
+    <form id="loginform" [formGroup]="signinForm">
       <p
         *ngIf="!connected"
         id="login-alert"
         class="alert alert-danger col-sm-12"
       >
-        Erreur lors de la connexion. Vérifiez votre nom d'utilisateur et votre
-        mot de passe.
+        Erreur lors de la création du compte. Vérifiez que les champs soient correctement remplis.
       </p>
       <input
         mat-input
-        type="text"
+        type="email"
         formControlName="email"
         id="email"
         #email
         class="fadeIn second"
         name="email"
-        placeholder="Email"
+        placeholder="Adresse e-mail"
       />
       <div
         *ngIf="signinForm.controls['email'].invalid && !correctForm"
         class="alert alert-danger"
       >
         <div
-          *ngIf="signinForm.controls['email'].errors?.['required']  && !correctForm"
+          *ngIf="signinForm.controls['email'].errors?.['required']  && !correctForm;else incorrect_mail"
         >
           L'email est obligatoire.
         </div>
+        <ng-template #incorrect_mail>Veuillez entrer un e-mail valide.</ng-template>
       </div>
 
       <input
@@ -73,7 +73,7 @@
         mat-input
         id="confirmedPassword"
         formControlName="confirmedPassword"
-        #password
+        #confirmedPassword
         type="password"
         class="fadeIn third"
         name="confirmedPassword"
@@ -82,18 +82,23 @@
       />
 
       <div
-        *ngIf="signinForm.controls['confirmedPassword'].invalid && !correctForm"
+        *ngIf="signinForm.controls['confirmedPassword'].invalid && !correctForm || password.value!=confirmedPassword.value"
         class="alert alert-danger"
       >
-        <div *ngIf="signinForm.controls['confirmedPassword'].errors?.['required']  ">
-          Le mot de passe est obligatoire.
+        <div *ngIf="signinForm.controls['confirmedPassword'].errors?.['required'];else password_match">
+          La confirmation du mot de passe est obligatoire.</div>
+          <ng-template #password_match>
+          <div *ngIf="password.value!=confirmedPassword.value"> 
+          Les mots de passe doivent correspondre.
+          </div>
+          </ng-template>
           <!-- <div
           *ngIf="signinForm.controls['confirmedPassword'].value!=signinForm.controls['password'].value"
           class="alert alert-danger"
         > 
       </div>-->
-        </div>
       </div>
+      
 
       <input
         type="submit"
@@ -106,7 +111,7 @@
   </ng-template>
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      Vous avez déjà un compte ? <a class="underlineHover" href="login-component">Se connecter</a>
+      Vous avez déjà un compte ? <a class="underlineHover" href="/login">Se connecter</a>
 
 </div>
 

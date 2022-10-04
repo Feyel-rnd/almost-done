@@ -10,17 +10,17 @@ import { CheckPageComponent } from './check-page/check-page.component';
 
 //const routes: Routes = []; // sets up routes constant where you define your routes
 const routes: Routes = [
-  { path: '', redirectTo: '/login-component', pathMatch: 'full' },
-  { path: 'login-component', component: ConnexionFormComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: ConnexionFormComponent },
   {
     path: 'main-component',
     component: MainPageComponent,
     canActivate: [YourGuard],
   },
  // { path: 'register-component', component: RegisterFormComponent },
-  { path: 'secondary-component', component: SecondaryPageComponent },
+  { path: 'create-account', component: SecondaryPageComponent },
   { path: 'check-page-component', component: CheckPageComponent },
-  { path: '**',  redirectTo: '/secondary-component', pathMatch: 'full'},
+  { path: '**',  redirectTo: '/create-account', pathMatch: 'full'},
 ];
 // configures NgModule imports and exports
 @NgModule({
