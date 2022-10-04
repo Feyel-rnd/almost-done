@@ -23,11 +23,11 @@ export class CheckPageComponent implements OnInit {
     const app = new Realm.App('data-icqqg');
     
     try {
-      await app.emailPasswordAuth.confirmUser({ token, tokenId });
+      console.log(await app.emailPasswordAuth.confirmUser({ token, tokenId }));
       return "Votre adresse est vérifiée ! Vous pouvez fermer cette page."
     } catch (err) {
       console.error('Failed', err);
-      console.log (err.__zone_symbol__state)
+      //console.log (err.__zone_symbol__state)
       return "Erreur d'authentification : token expiré, invalide ou absent."
     }
   }
@@ -36,7 +36,7 @@ export class CheckPageComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams
       .subscribe(params => {
-        console.log(params); // { order: "popular" }
+        //console.log(params); // { order: "popular" }
 
         this.token = params.token;
         this.tokenId = params.tokenId;
