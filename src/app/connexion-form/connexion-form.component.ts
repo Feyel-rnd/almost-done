@@ -60,7 +60,7 @@ export class ConnexionFormComponent {
       const user: any = loginEmailPassword(a, b);
       //console.log(user.__zone_symbol__value[0])
       if (user.__zone_symbol__value![0] == undefined) {
-        // //console.log("Successfully logged in!", user)
+        console.log("Successfully logged in!", user)
         // this.redirect = true;
         // //console.log(user.__zone_symbol__value)
                 // Usually you would use the redirect URL from the auth service.

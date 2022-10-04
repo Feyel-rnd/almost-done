@@ -23,7 +23,7 @@ export class CheckPageComponent implements OnInit {
     const app = new Realm.App('data-icqqg');
     
     try {
-      console.log(await app.emailPasswordAuth.confirmUser({ token, tokenId }));
+      await app.emailPasswordAuth.confirmUser({ token, tokenId });
       return "Votre adresse est vérifiée ! Vous pouvez fermer cette page."
     } catch (err) {
       console.error('Failed', err);
@@ -37,7 +37,6 @@ export class CheckPageComponent implements OnInit {
     this.route.queryParams
       .subscribe(params => {
         //console.log(params); // { order: "popular" }
-
         this.token = params.token;
         this.tokenId = params.tokenId;
         this.verify(this.token,this.tokenId).then((value) => {
