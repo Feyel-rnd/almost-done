@@ -30,5 +30,14 @@ import { Component, VERSION } from '@angular/core';
   styleUrls: [ './app.component.css' ]
 })
 export class AppComponent  {
-  
+
+  saveData(key:string,value:any) {
+    sessionStorage.setItem(key, value);
+  }
+  getData(key:string) {
+    return sessionStorage.getItem(key);
+  }
+  deleteData(){
+    sessionStorage.clear();
+  }
 }
