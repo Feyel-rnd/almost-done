@@ -13,14 +13,14 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: ConnexionFormComponent },
   {
-    path: 'main-component',
+    path: 'dashboard',
     component: MainPageComponent,
     canActivate: [YourGuard],
   },
  // { path: 'register-component', component: RegisterFormComponent },
   { path: 'create-account', component: SecondaryPageComponent },
   { path: 'check-page-component', component: CheckPageComponent },
-  { path: '**',  redirectTo: '/create-account', pathMatch: 'full'},
+  { path: '**',  redirectTo: '/login', pathMatch: 'full'},
 ];
 // configures NgModule imports and exports
 @NgModule({

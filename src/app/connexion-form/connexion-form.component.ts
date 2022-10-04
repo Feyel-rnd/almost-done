@@ -14,10 +14,11 @@ async function loginEmailPassword(email, password) {
     const user = await app.logIn(credentials);
     // `App.currentUser` updates to match the logged in user
     console.assert(user.id === app.currentUser.id);
-    return user;
+    return true;
   } catch (err) {
     console.error('Failed to log in', err);
     //return err.__zone_symbol__state
+    return false
   }
 }
 //const user = loginEmailPassword("spalette@feyel-artzner.com", "FeyelR&D");
@@ -57,21 +58,23 @@ export class ConnexionFormComponent {
     if (this.correctForm) {
       //console.log(this.correctForm)
 
-      const user: any = loginEmailPassword(a, b);
+      loginEmailPassword(a, b).then((authorized) => {
+        if (authorized) {
+          console.log("Successfully logged in!")
+          // this.redirect = true;
+          // //console.log(user.__zone_symbol__value)
+                  // Usually you would use the redirect URL from the auth service.
+          // However to keep the example simple, we will always redirect to `/admin`.
+          const redirectUrl = '/dashboard';
+  
+          // Redirect the user
+          this.router.navigate([redirectUrl]);
+        } else {
+          this.connected = false;
+        }
+      })
       //console.log(user.__zone_symbol__value[0])
-      if (user.__zone_symbol__value![0] == undefined) {
-        console.log("Successfully logged in!", user)
-        // this.redirect = true;
-        // //console.log(user.__zone_symbol__value)
-                // Usually you would use the redirect URL from the auth service.
-        // However to keep the example simple, we will always redirect to `/admin`.
-        const redirectUrl = '/main-component';
-
-        // Redirect the user
-        this.router.navigate([redirectUrl]);
-      } else {
-        this.connected = false;
-      }
+      
     }
   }
   async insert_doc() {
